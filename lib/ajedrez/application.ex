@@ -17,9 +17,9 @@ defmodule Ajedrez.Application do
       # Start Finch
       {Finch, name: Ajedrez.Finch},
       # Start the Endpoint (http/https)
-      AjedrezWeb.Endpoint
+      AjedrezWeb.Endpoint,
       # Start a worker by calling: Ajedrez.Worker.start_link(arg)
-      # {Ajedrez.Worker, arg}
+      Ajedrez.PositionStore,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

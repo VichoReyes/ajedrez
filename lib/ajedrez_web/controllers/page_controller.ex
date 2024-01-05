@@ -2,11 +2,15 @@ defmodule AjedrezWeb.PageController do
   use AjedrezWeb, :controller
 
   def home(conn, _params) do
-    render(conn, :home)
+    # position is a FEN code
+    position = Ajedrez.PositionStore.get()
+    conn
+    |> assign(:position, position)
+    |> render(:home)
   end
 
   def update(conn, params) do
-    IO.puts("FEN: #{params["position"]}")
+    Ajedrez.PositionStore.set(params["position"])
     conn
     |> send_resp(:no_content, "")
   end

@@ -2,7 +2,8 @@
   Hola
 </p>
 <div id="board1" style="width: 400px"></div>
-<script>
+<script data-position={@position}>
+  const initialPosition = document.currentScript.dataset.position;
   document.addEventListener('DOMContentLoaded', function() {
     function savePositionOnDrop(source, target, piece, newPos, oldPos, orientation) {
       // PUT to this URL to save newPos to the server.
@@ -25,6 +26,7 @@
         sparePieces: true,
         dropOffBoard: 'trash',
         onDrop: savePositionOnDrop,
+        position: initialPosition,
       }
     )
   })
