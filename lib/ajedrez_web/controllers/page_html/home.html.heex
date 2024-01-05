@@ -1,9 +1,17 @@
 <p>
-Hola
+  Hola
 </p>
 <div id="board1" style="width: 400px"></div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var board1 = Chessboard('board1', 'start')
-})
+  document.addEventListener('DOMContentLoaded', function() {
+    var board1 = Chessboard(
+      'board1',
+      {
+        draggable: true,
+        pieceTheme: '/images/chesspieces/wikipedia/{piece}.png',
+        sparePieces: true,
+        dropOffBoard: 'trash',
+      }
+    )
+  })
 </script>
