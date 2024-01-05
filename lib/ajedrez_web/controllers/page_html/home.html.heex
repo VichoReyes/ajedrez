@@ -4,6 +4,19 @@
 <div id="board1" style="width: 400px"></div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function savePositionOnDrop(source, target, piece, newPos, oldPos, orientation) {
+      // PUT to this URL to save newPos to the server.
+      fetch('/', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          position: Chessboard.objToFen(newPos),
+          _csrf_token: document.querySelector('meta[name="csrf-token"]').content,
+        })
+      })
+    }
     var board1 = Chessboard(
       'board1',
       {
@@ -11,6 +24,7 @@
         pieceTheme: '/images/chesspieces/wikipedia/{piece}.png',
         sparePieces: true,
         dropOffBoard: 'trash',
+        onDrop: savePositionOnDrop,
       }
     )
   })
