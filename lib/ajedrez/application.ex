@@ -19,7 +19,7 @@ defmodule Ajedrez.Application do
       # Start the Endpoint (http/https)
       AjedrezWeb.Endpoint,
       # Start a worker by calling: Ajedrez.Worker.start_link(arg)
-      Ajedrez.PositionStore,
+      # {Ajedrez.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
