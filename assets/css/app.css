@@ -3,3 +3,8 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+/* tailwind breaks the chessboard.js styles */
+[class^="spare-pieces-"] img {
+    display: inline !important;
+}
