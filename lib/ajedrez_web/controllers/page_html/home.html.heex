@@ -1,33 +1,12 @@
-<p>
-  Hola
-</p>
-<div id="board1" style="width: 400px"></div>
-<script data-position={@position}>
-  const initialPosition = document.currentScript.dataset.position;
-  document.addEventListener('DOMContentLoaded', function() {
-    function savePositionOnDrop(source, target, piece, newPos, oldPos, orientation) {
-      // PUT to this URL to save newPos to the server.
-      fetch('/', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          position: Chessboard.objToFen(newPos),
-          _csrf_token: document.querySelector('meta[name="csrf-token"]').content,
-        })
-      })
-    }
-    var board1 = Chessboard(
-      'board1',
-      {
-        draggable: true,
-        pieceTheme: '/images/chesspieces/wikipedia/{piece}.png',
-        sparePieces: true,
-        dropOffBoard: 'trash',
-        onDrop: savePositionOnDrop,
-        position: initialPosition,
-      }
-    )
-  })
-</script>
+<main class="px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-2xl">
+    <.flash_group flash={@flash} />
+    <p>
+      Este es un proyecto de ejemplo de phoenix. Entre a cualquier sala para jugar ajedrez.
+      Las salas son públicas, así que cualquiera puede entrar.
+    </p>
+    <p class="my-3">
+      Debe entrar a la misma sala que su oponente para poder jugar.
+    </p>
+  </div>
+</main>

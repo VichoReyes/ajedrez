@@ -18,7 +18,8 @@ defmodule AjedrezWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    put "/", PageController, :update
+    get "/:name", PageController, :show
+    put "/:name", PageController, :update
   end
 
   # Other scopes may use custom stacks.

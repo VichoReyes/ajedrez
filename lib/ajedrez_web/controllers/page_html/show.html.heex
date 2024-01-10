@@ -1,0 +1,30 @@
+<div id="board1" style="width: 400px"></div>
+<script data-position={@position} data-url={@conn.request_path}>
+  const initialPosition = document.currentScript.dataset.position;
+  const postUrl = document.currentScript.dataset.url;
+  document.addEventListener('DOMContentLoaded', function() {
+    function savePositionOnDrop(source, target, piece, newPos, oldPos, orientation) {
+      fetch(postUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          position: Chessboard.objToFen(newPos),
+          _csrf_token: document.querySelector('meta[name="csrf-token"]').content,
+        })
+      })
+    }
+    var board1 = Chessboard(
+      'board1',
+      {
+        draggable: true,
+        pieceTheme: '/images/chesspieces/wikipedia/{piece}.png',
+        sparePieces: true,
+        dropOffBoard: 'trash',
+        onDrop: savePositionOnDrop,
+        position: initialPosition,
+      }
+    )
+  })
+</script>
