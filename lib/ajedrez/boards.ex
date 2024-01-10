@@ -47,4 +47,12 @@ defmodule Ajedrez.Boards do
 
     Repo.insert(changeset, on_conflict: [set: [fen: fen]], conflict_target: [:name])
   end
+
+  @doc """
+  Deletes all Position records that haven't been updated in a given amount of time, which is given in seconds
+  """
+  def cleanup(stale_time) when is_integer(stale_time) do
+    from(p in Position, where: p.updated_at < ^DateTime.add(DateTime.utc_now(), -stale_time, :second))
+    |> Repo.delete_all()
+  end
 end
